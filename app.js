@@ -76,7 +76,7 @@ function getLocation(event) {
     x.value = "קו רוחב : " + lat +
     " | קו אורך : " + lng;
 
-    var map = L.map('googleMap').setView([lat, lng], 17);
+    var map = L.map('googleMap').fitWorld();
  /* L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
    
