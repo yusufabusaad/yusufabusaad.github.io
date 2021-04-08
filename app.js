@@ -40,7 +40,7 @@ let x = document.querySelector("#MAP");
 function getLocation(event) {
     event.preventDefault();
     x.setAttribute('disabled','');
-
+    document.querySelector('#googleMap').innerHTML = '';
     //new Code
     
     if ( navigator.permissions && navigator.permissions.query) {
@@ -70,7 +70,7 @@ function getLocation(event) {
   }
   
   function showPosition(position) {
-
+   
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
     x.value = "קו רוחב : " + lat +
@@ -80,6 +80,15 @@ function getLocation(event) {
       layers: [
         new ol.layer.Tile({
           source: new ol.source.OSM()
+        }),
+        new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [
+              new ol.Feature({
+                  geometry: new ol.geom.Point(ol.proj.fromLonLat([lng, lat]))
+              })
+            ]
+          })
         })
       ],
       view: new ol.View({
@@ -87,6 +96,7 @@ function getLocation(event) {
         zoom: 16
       })
     });
+   
 
 }
 
