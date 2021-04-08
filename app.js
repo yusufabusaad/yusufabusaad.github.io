@@ -70,22 +70,17 @@ function getLocation(event) {
   }
   
   function showPosition(position) {
-    x.value = "קו רוחב : " + position.coords.latitude +
-    " | קו אורך : " + position.coords.longitude;
 
-    // Initialize and add the map
-  // The location of Uluru
-  const uluru = { lat: position.coords.latitude, lng: position.coords.longitude };
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("googleMap"), {
-    zoom: 18,
-    center: uluru,
-  });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
+    let lat = position.coords.latitude;
+    let lng = position.coords.longitude;
+    x.value = "קו רוחב : " + lat +
+    " | קו אורך : " + lng;
+
+    var map = L.map('googleMap').setView([lat, lng], 17);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+L.marker([lat,lng]).addTo(map)
 }
 
     
