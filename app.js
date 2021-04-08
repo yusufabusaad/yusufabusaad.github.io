@@ -75,25 +75,18 @@ function getLocation(event) {
     let lng = position.coords.longitude;
     x.value = "קו רוחב : " + lat +
     " | קו אורך : " + lng;
-
-    var map = L.map('googleMap').fitWorld();
- L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-   
-  maxZoom : 18,
-                tileSize:512,
-                zoomOffset :-1
-  }).addTo(map);
-
-
-map.locate({setView:true,maxZoom:16});
-
-  var radius = position.accuracy;
-
-  L.marker([lat,lng]).addTo(map)
-      .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-  L.circle([lat,lng], radius).addTo(map);
+    var map = new ol.Map({
+      target: 'googleMap',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([lng, lat]),
+        zoom: 16
+      })
+    });
 
 }
 
