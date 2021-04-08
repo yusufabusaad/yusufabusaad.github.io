@@ -77,19 +77,15 @@ function getLocation(event) {
     " | קו אורך : " + lng;
 
     var map = L.map('googleMap').fitWorld();
- /* L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
    
-
-  }).addTo(map);
-*/
-L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-            
-                attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-                maxZoom : 18,
+  maxZoom : 18,
                 tileSize:512,
                 zoomOffset :-1
-             }).addTo(map);
+  }).addTo(map);
+
+
 map.locate({setView:true,maxZoom:16});
 
   var radius = position.accuracy;
