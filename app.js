@@ -78,8 +78,12 @@ function getLocation(event) {
 
     var map = L.map('googleMap').setView([lat, lng], 17);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom : 18,
+    tileSize:512,
+    zoomOffset :-1
+
+  }).addTo(map);
 L.marker([lat,lng]).addTo(map)
 }
 
