@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma-rtl.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap');
+        *{
+            font-family: 'Heebo', sans-serif;
+        }
+       
+         </style>
+    
+        <title>App</title>
+    </head>
+<body>
+    <div class="container">
+        <header class="box">
+            <h1 class="title is-2">מערכת</h1>
+        </header>
+        <div class="m-4 box ">
+            <h1 class="title is-6">
+                <form>
+                    <div class="block">
+                     
+                      <div class="field">
+                        <div class="control">
+                          <div class="select is-info is-fullwidth">
+                            <select>
+                              <option>תבחר ישוב</option>
+                              <option>לקיה</option>
+                              <option>שגב שלום</option>
+                              <option>חורה</option>
+                              <option>תל שבע</option>
+                              <option>רהט</option>
+                              <option>כסייפה</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    <!---->
+                    <div class="block filed">
+                        <div class="label">מספר בור</div>
+                        <div class="control">
+                          <input type="number" class="input is-link" placeholder="מספר בור">
+                        </div>
+                    </div>
+                    <div class="block filed">
+                        <div class="label">מיקום</div>
+                        <div class="control">
+                            
+                          <div class="columns is-mobile">
+                              <div class="column is-9">
+                                <input id="MAP" type="text" class="input is-success" placeholder="מיקום">
+                              </div>
+                              <div class="column is-3">
+                                <button id="getLocation" class="button is-success is-rounded is-fullwidth">איתור</button>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="block file">
+                        <label class="file-label">
+                          <input id="file-input" class="file-input" type="file" name="resume">
+                          <span class="file-cta">
+                            <span class="file-label">
+                              תבחר תמונות
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="block" id="preview" style="display:flex; flex-direction:row; flex-wrap:wrap;"></div>
+                      <div class="has-text-left">
+                        <input type="submit" class="button is-info " value="שמור">
+                        <input type="submit" class="button is-danger" value="בטול">
+                      </div>
+                   
+                </form>
+            </h1>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
