@@ -90,7 +90,15 @@ L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.pn
                 tileSize:512,
                 zoomOffset :-1
              }).addTo(map);
-L.marker([lat,lng]).addTo(map)
+map.locate({setView:true,maxZoom:16});
+
+  var radius = position.accuracy;
+
+  L.marker([lat,lng]).addTo(map)
+      .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+  L.circle([lat,lng], radius).addTo(map);
+
 }
 
     
