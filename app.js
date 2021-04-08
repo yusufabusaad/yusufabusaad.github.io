@@ -41,6 +41,7 @@ function getLocation(event) {
     event.preventDefault();
     x.setAttribute('disabled','');
     document.querySelector('#googleMap').innerHTML = '';
+    document.querySelector('#googleMap').style.height = '200px';
     //new Code
     
     if ( navigator.permissions && navigator.permissions.query) {

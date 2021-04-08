@@ -13,11 +13,7 @@
         *{
             font-family: 'Heebo', sans-serif;
         }
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-        }
+       
        
          </style>
     
@@ -31,9 +27,10 @@
         <div class="m-4 box ">
             <h1 class="title is-6">
                 <form>
-                    <div class="block">
+                  
                      
-                      <div class="field">
+                      <div class="field  my-3">
+                        <div class="label">ישוב</div>
                         <div class="control">
                           <div class="select is-info is-fullwidth">
                             <select>
@@ -49,13 +46,13 @@
                         </div>
                       </div>
                     <!---->
-                    <div class="block filed">
+                    <div class=" filed  my-3">
                         <div class="label">מספר בור</div>
                         <div class="control">
                           <input type="number" class="input is-link" placeholder="מספר בור">
                         </div>
                     </div>
-                    <div class="block filed">
+                    <div class="filed my-3">
                         <div class="label">מיקום</div>
                         <div class="control">
                             
@@ -64,20 +61,24 @@
                                 <input id="MAP" type="text" class="input is-success" placeholder="מיקום">
                               </div>
                               <div class="column is-3">
-                                <button id="getLocation" class="button is-success is-rounded is-fullwidth">איתור</button>
+                                <button id="getLocation" class="button is-warning is-rounded is-fullwidth"> איתור <span class="mx-1 mt-1"> <i class="fas fa-map-marker-alt"> </i></span></button>
                               </div>
                           </div>
                         </div>
                     </div>
-                    <div id="googleMap" style="height: 200px;" class="block">
+
+                    <div id="googleMap"  class="block">
 
                     </div>
-                    <div class="block file">
+                    <div class="block file is-success">
                         <label class="file-label">
                           <input id="file-input" class="file-input" multiple="multiple" type="file">
                           <span class="file-cta">
+                            <span class="file-icon">
+                              <i class="fas fa-cloud-upload-alt"></i>
+                            </span>
                             <span class="file-label">
-                              תבחר תמונות
+                              העלאת תמונה  
                             </span>
                           </span>
                         </label>
