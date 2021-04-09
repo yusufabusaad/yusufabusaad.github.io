@@ -169,6 +169,7 @@ if(!validate())
     מספר_בור : Hnumber,
     מפה : MAP 
   })
+  alert('נשלח ..');
 
   clearInputs();
 }
@@ -178,6 +179,7 @@ function clearInputs() {
   document.getElementById("Lnumber").value = '';
   document.getElementById("Hnumber").value = '';
   document.getElementById("MAP").value = '';
+  document.getElementById("preview").innerHTML = '';
 }
 document.querySelector("#insert").addEventListener('click',insertData)
 document.querySelector("#clearInput").addEventListener('click',clearInputs)
