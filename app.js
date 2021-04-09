@@ -10,6 +10,16 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var ID = firebase.database().ref().push().key;
 
+var Lname,Lnumber,Hnumber,MAP,idNumber;
+function ready()
+{
+Lname = document.getElementById("Lname").value; 
+Lnumber = document.getElementById("Lnumber").value;
+Hnumber= document.getElementById("Hnumber").value;
+MAP = document.getElementById("MAP").value;
+idNumber = document.getElementById("idNumber").value;
+}
+
 
 
 function showPicture(event) 
@@ -48,10 +58,19 @@ function showPicture(event)
               }
            
               preview.appendChild(image);
-              var imageURL = []
-              function uploadPhoto()
+             
+              function uploadPhoto(event)
                   {
-                   var uploadTask =  firebase.storage().ref('images/'+ID+"/"+file.name).put(f[0]);
+                    event.preventDefault();
+                    if(document.getElementById("file-input").value == '')
+                    {
+                      alert('Some thing went wrong')
+                      return
+                    }else {
+                      firebase.storage().ref('images/'+ID+"/"+file.name).put(f[0]);
+                    }
+               
+                    
                   }
                  document.querySelector("#insert").addEventListener('click',uploadPhoto)
           });
@@ -132,32 +151,15 @@ document.querySelector('#file-input').addEventListener('change',showPicture);
 document.querySelector('#getLocation').addEventListener('click',getLocation);
 
 
-var Lname,Lnumber,Hnumber,MAP,idNumber;
-function ready()
-{
-Lname = document.getElementById("Lname").value; 
-Lnumber = document.getElementById("Lnumber").value;
-Hnumber= document.getElementById("Hnumber").value;
-MAP = document.getElementById("MAP").value;
-idNumber = document.getElementById("idNumber").value;
-}
 
-function validate()
-{
-   if(document.getElementById("Lname").value == '' || document.getElementById("Hnumber").value == '' || document.getElementById("idNumber").value == '' )
-   {
-    return false
-   }
-
-  return true;
-}
 function insertData(event)
 {
 event.preventDefault()
 
-if(!validate())
+if(document.getElementById("Lname").value == '' || document.getElementById("Hnumber").value == '' || document.getElementById("idNumber").value == '' )
 {
- return
+  alert('00')
+  return
 }else {
   ready();
 }
