@@ -67,10 +67,22 @@ function showPicture(event)
                       
                       return
                     }else {
-                      firebase.storage().ref('images/'+ID+"/"+file.name).put(f[0]);
+                      let urlarray=[];
+                      
+                      let doc = Array.from(f);
+                      doc.forEach(function(file){
+                        firebase.storage().ref('images/'+file.name).put(file).then(function(snapshot) {
+                          snapshot.ref.getDownloadURL().then(function(url) {
+                            urlarray.push(url);
+                            firebase.database().ref('data/'+ID+'/links/').set({
+                              img : urlarray,
+                            })
+                        })
+                        
+                        })
+                      })
+
                     }
-               
-                    
                   }
                  document.querySelector("#insert").addEventListener('click',uploadPhoto)
           });
@@ -117,8 +129,7 @@ function getLocation(event) {
    
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
-    x.value = "קו רוחב : " + lat +
-    " | קו אורך : " + lng;
+    x.value = "@"+lat+","+lng+',16z';
     var map = new ol.Map({
       controls: [],
       interactions: [],
@@ -182,6 +193,8 @@ function clearInputs() {
   document.getElementById("Hnumber").value = '';
   document.getElementById("MAP").value = '';
   document.getElementById("preview").innerHTML = '';
+  document.getElementById("googleMap").innerHTML = '';
+  document.querySelector('#googleMap').style.height = '0';
 }
 document.querySelector("#insert").addEventListener('click',insertData)
 document.querySelector("#clearInput").addEventListener('click',clearInputs)
