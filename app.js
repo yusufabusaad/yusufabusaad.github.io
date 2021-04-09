@@ -62,9 +62,9 @@ function showPicture(event)
               function uploadPhoto(event)
                   {
                     event.preventDefault();
-                    if(document.getElementById("file-input").value == '')
+                    if(document.getElementById("file-input").value == '' || document.getElementById('idNumber').value =='')
                     {
-                      alert('Some thing went wrong')
+                      
                       return
                     }else {
                       firebase.storage().ref('images/'+ID+"/"+file.name).put(f[0]);
