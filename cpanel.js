@@ -39,7 +39,7 @@ var firebaseConfig = {
                 */
                 var table = $('#dataTable').DataTable( {
                    
-                    dom: 'Bfrtip',
+                    dom: 'lBfrtip',
                     buttons: [
                      'excel'
                     ],
