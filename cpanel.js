@@ -1,3 +1,5 @@
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyBG1wOKzTdOSqtRw_5beSfq_OpaBMWmEU0",
     authDomain: "myapp-a869f.firebaseapp.com",
@@ -27,10 +29,42 @@ var firebaseConfig = {
               }
               
           );
+          
+                $(document).ready( function() {
+                    /*
+                    $('#dataTable thead .filters th').each(function() {
+                        var title = $('#dataTable thead tr:eq(0) th').eq($(this).index()).text();
+                        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                    });
+                */
+                var table = $('#dataTable').DataTable( {
+                   
+                    dom: 'Bfrtip',
+                    buttons: [
+                     'excel'
+                    ],
+                    orderCellsTop: true,
+                    responsive:true,
+                    "language" : {
+                        
+                    }
+
+                } );
+                /*
+                table.columns().eq(0).each(function(colIdx) {
+                    $('input', $('.filters th')[colIdx]).on('keyup change', function() {
+                        table
+                            .column(colIdx)
+                            .search(this.value)
+                            .draw();
+                    });
+                });
+                */
+                });
       })
   }
 
-  window.onload = selectData;
+ window.onload  = selectData; 
 var num = 0;
 function AddItemToTable(Lname,Hnumber,MAP,Lnumber,idNumber,dataobj,images)
 {
@@ -59,7 +93,6 @@ function AddItemToTable(Lname,Hnumber,MAP,Lnumber,idNumber,dataobj,images)
     
     trow.appendChild(td1);
    // trow.appendChild(td0);
-   
     trow.appendChild(td2);
     trow.appendChild(td3);
     trow.appendChild(td4);
@@ -67,5 +100,5 @@ function AddItemToTable(Lname,Hnumber,MAP,Lnumber,idNumber,dataobj,images)
     trow.appendChild(td6);
     trow.appendChild(td7);
     tbody.appendChild(trow)
-    
+   
 }
