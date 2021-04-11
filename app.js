@@ -64,6 +64,7 @@ function uploadPhoto(event)
           
           snapshot.ref.getDownloadURL().then(function(url) {
             urlarray.push(url);
+            console.log(urlarray);
             firebase.database().ref('data/'+ID).set({
               תעודת_זהות: idNumber,
               ישוב : Lname,
