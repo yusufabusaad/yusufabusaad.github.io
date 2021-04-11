@@ -32,60 +32,8 @@ function showPicture(event)
     }    
     var f = event.target.files;
     fileArry.push(f);
-   
-}
-
-function uploadPhoto(event)
-{
-  event.preventDefault();
- 
-  if(validateForm() != false)
-  {
-  ready();
-    let urlarray=[];
-    
-   // console.log(urlarray)
-   if(fileArry.length === 0)
-   {
-    firebase.database().ref('data/'+ID).set({
-      תעודת_זהות: idNumber,
-      ישוב : Lname,
-      שכונה :Lnumber,
-      מספר_בור : Hnumber,
-      מפה : MAP ,
-      img :  ['noImage'],
-    })  
-   }else {
-    let doc = Array.from(fileArry[0]);
-   console.log('flag-1 ' + doc )
-      doc.forEach(function(file){
-        
-        firebase.storage().ref('images/'+file.name).put(file).then(function(snapshot){
-          
-          snapshot.ref.getDownloadURL().then(function(url) {
-            urlarray.push(url);
-            console.log(urlarray);
-            firebase.database().ref('data/'+ID).set({
-              תעודת_זהות: idNumber,
-              ישוב : Lname,
-              שכונה :Lnumber,
-              מספר_בור : Hnumber,
-              מפה : MAP ,
-              img : urlarray,
-        })
-        })
-        })
-      })
-    }
-  }
-  clearInputs();
-}
-document.querySelector("#insert").addEventListener('click',uploadPhoto)
-
-
-//----read files
-
-function readAndPreview(file)
+    console.log(fileArry);
+    function readAndPreview(file)
     {
         if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
             return alert(file.name + " is not an image");
@@ -118,6 +66,63 @@ function readAndPreview(file)
           reader.readAsDataURL(file)
 
     }
+   
+}
+
+function uploadPhoto(event)
+{
+  event.preventDefault();
+ 
+  if(validateForm() != false)
+  {
+  ready();
+    let urlarray=[];
+    
+   // console.log(urlarray)
+   if(fileArry.length === 0)
+   {
+    firebase.database().ref('data/'+ID).set({
+      תעודת_זהות: idNumber,
+      ישוב : Lname,
+      שכונה :Lnumber,
+      מספר_בור : Hnumber,
+      מפה : MAP ,
+      img :  ['noImage'],
+    })  
+   }else {
+     for(var i=0 ; i < fileArry.length ; i++)
+     {
+    let doc = Array.from(fileArry[i]);
+   console.log('flag-1 ' + doc )
+      doc.forEach(function(file){
+        
+        firebase.storage().ref('images/'+file.name).put(file).then(function(snapshot){
+          
+          snapshot.ref.getDownloadURL().then(function(url) {
+            urlarray.push(url);
+            console.log(urlarray);
+            firebase.database().ref('data/'+ID).set({
+              תעודת_זהות: idNumber,
+              ישוב : Lname,
+              שכונה :Lnumber,
+              מספר_בור : Hnumber,
+              מפה : MAP ,
+              img : urlarray,
+        })
+        })
+        })
+      })
+    }
+   }
+  }
+  clearInputs();
+}
+document.querySelector("#insert").addEventListener('click',uploadPhoto)
+
+
+//----read files
+
+
 
 //-----
 
