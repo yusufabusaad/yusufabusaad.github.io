@@ -24,6 +24,7 @@ idNumber = document.getElementById("idNumber").value;
 var fileArry = []
 function showPicture(event) 
 {
+ 
     let preview = document.querySelector('#preview');
 
     if(this.files)
@@ -31,7 +32,13 @@ function showPicture(event)
         [].forEach.call(this.files,readAndPreview);
     }    
     var f = event.target.files;
-    fileArry.push(f);
+   
+    for(var i=0 ; i < f.length; i++)
+    {
+     
+      fileArry.push(event.target.files[i]);
+    
+    }
     console.log(fileArry);
     function readAndPreview(file)
     {
@@ -90,13 +97,12 @@ function uploadPhoto(event)
       img :  ['noImage'],
     })  
    }else {
-     for(var i=0 ; i < fileArry.length ; i++)
-     {
-    let doc = Array.from(fileArry[i]);
+    
+    let doc = Array.from(fileArry);
    console.log('flag-1 ' + doc )
       doc.forEach(function(file){
-        
-        firebase.storage().ref('images/'+file.name).put(file).then(function(snapshot){
+        var rand = firebase.database().ref().push().key;
+        firebase.storage().ref('images/'+rand+"-"+file.name).put(file).then(function(snapshot){
           
           snapshot.ref.getDownloadURL().then(function(url) {
             urlarray.push(url);
@@ -112,7 +118,6 @@ function uploadPhoto(event)
         })
         })
       })
-    }
    }
   }
   clearInputs();
