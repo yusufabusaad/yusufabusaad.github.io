@@ -23,7 +23,7 @@ var firebaseConfig = {
                var MAP = CurrentRecord.val().מפה;
                 var Lnumber = CurrentRecord.val().שכונה;
                 var idNumber = CurrentRecord.val().תעודת_זהות;
-                var images = CurrentRecord.val().links.img;
+                var images = CurrentRecord.val().img;
 
                  AddItemToTable(Lname,Hnumber,MAP,Lnumber,idNumber,dataobj=0,images);
               }
@@ -88,7 +88,12 @@ function AddItemToTable(Lname,Hnumber,MAP,Lnumber,idNumber,dataobj,images)
     td6.innerHTML =idNumber;
     for(var i=0;i < images.length;i++)
     {
+        if(images[0] == 'noImage')
+        {
+            td7.innerHTML = "No Images"
+        }else {
         td7.innerHTML += '<a class="button is-small" target="_blank" href='+images[i]+'>image </a>'
+        }
     }
     
     trow.appendChild(td1);

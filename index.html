@@ -43,11 +43,11 @@
           </header>
           <a href="cpanel.html"><span class="mr-5 ml-2"><i class="fas fa-file-invoice"></i></span> דף נתונים</a>
         <div class="" style="padding-bottom: 60px;">
-                <form>
+                <form name="Form">
                   <div class="field m-3">
                       <div class="label"> ת.ז עובד</div>
                       <div class="control">
-                        <input id="idNumber" type="number" class="input is-link" placeholder="ת.ז" required>
+                        <input name="idNumber-input" id="idNumber" type="number" class="input is-link" placeholder="ת.ז" required>
                       </div>
                   </div>
                  
@@ -55,7 +55,7 @@
                         <div class="label">ישוב</div>
                         <div class="control">
                           <div class="select is-info is-fullwidth">
-                            <select id="Lname" required>
+                            <select name="Lname-input" id="Lname" required>
                               <option>תבחר ישוב</option>
                               <option>לקיה</option>
                               <option>שגב שלום</option>
@@ -71,13 +71,13 @@
                     <div class="filed m-3">
                       <div class="label">שכונה</div>
                       <div class="control">
-                        <input id="Lnumber" type="number" class="input is-link" placeholder="שכונה" required>
+                        <input name="Lnumber-input" id="Lnumber" type="number" class="input is-link" placeholder="שכונה" required>
                       </div>
                     </div>
                     <div class=" filed  m-3">
                         <div class="label">מספר בור</div>
                         <div class="control">
-                          <input id="Hnumber" type="number" class="input is-link" placeholder="מספר בור" required>
+                          <input name="Hnumber-input" id="Hnumber" type="number" class="input is-link" placeholder="מספר בור" required>
                         </div>
                     </div>
                     <div class="filed m-3">
@@ -85,7 +85,7 @@
                         <div class="control">
                           <div class="columns is-mobile">
                               <div class="column is-9">
-                                <input id="MAP" type="text" class="input is-success" placeholder="מיקום">
+                                <input name="map-input" id="MAP" type="text" class="input is-success" placeholder="מיקום">
                               </div>
                               <div class="column is-3">
                                 <button id="getLocation" class="button is-warning  is-fullwidth"><span class="mx-1 mt-1"> <i class="fas fa-map-marker-alt"> </i></span></button>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="block file is-success m-3">
                         <label class="file-label">
-                          <input id="file-input" class="file-input" multiple="multiple" type="file">
+                          <input name="file-input" id="file-input" class="file-input" multiple="multiple" type="file">
                           <span class="file-cta">
                             <span class="file-icon">
                               <i class="fas fa-cloud-upload-alt"></i>
