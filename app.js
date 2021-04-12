@@ -82,7 +82,7 @@ function uploadPhoto(event)
  
   if(validateForm() != false)
   {
-  ready();
+    ready();
     let urlarray=[];
     
    // console.log(urlarray)
@@ -99,11 +99,15 @@ function uploadPhoto(event)
    }else {
     
     let doc = Array.from(fileArry);
-   console.log('flag-1 ' + doc )
+    console.log(doc)
+    let count = 0;
       doc.forEach(function(file){
         var rand = firebase.database().ref().push().key;
         firebase.storage().ref('images/'+rand+"-"+file.name).put(file).then(function(snapshot){
-          
+        
+          var progress = (100.0 * snapshot.bytesTransferred) / snapshot.totalBytes;
+         if(progress == 100)
+         {
           snapshot.ref.getDownloadURL().then(function(url) {
             urlarray.push(url);
             console.log(urlarray);
@@ -115,12 +119,24 @@ function uploadPhoto(event)
               מפה : MAP ,
               img : urlarray,
         })
+       
         })
+        count = count+1;
+        }
+        document.getElementById('upload-label').innerHTML = "Uploaded {" + count + " } : " + progress;  
         })
       })
+     
+     
+     
    }
   }
+  fileArry = [];
+  doc = [];
+  console.log(doc)
+  console.log(fileArry);
   clearInputs();
+
 }
 document.querySelector("#insert").addEventListener('click',uploadPhoto)
 
@@ -137,10 +153,11 @@ document.querySelector("#insert").addEventListener('click',uploadPhoto)
 
 
 
-let x = document.querySelector("#MAP");
+
 function getLocation(event) {
+  MAP = document.querySelector('#MAP');
     event.preventDefault();
-    x.setAttribute('disabled','');
+   // x.setAttribute('disabled','');
     document.querySelector('#googleMap').innerHTML = '';
     document.querySelector('#googleMap').style.height = '200px';
     //new Code
@@ -158,7 +175,7 @@ function getLocation(event) {
         //then Navigation APIs
         navigator.geolocation.getCurrentPosition(showPosition);
       }else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        MAP.innerHTML = "Geolocation is not supported by this browser.";
       }
   //--------------------------------------    
 
@@ -175,7 +192,7 @@ function getLocation(event) {
    
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
-    x.value = "@"+lat+","+lng+',16z';
+    MAP.value = "@"+lat+","+lng+',16z';
     var map = new ol.Map({
       controls: [],
       interactions: [],
@@ -212,8 +229,8 @@ function validateForm(){
 var a = document.forms["Form"]["idNumber-input"].value;
 var b = document.forms["Form"]["Lname-input"].value;
 var c = document.forms["Form"]["Hnumber-input"].value;
-var d = document.forms["Form"]["map-input"].value;
-var e = document.forms["Form"]["file-input"].value;
+var d = document.forms["Form"]["Map-input"].value;
+//var e = document.forms["Form"]["file-input"].value;
     if(a== null || a=="",b==null || b=="",c==null || c=="",d==null || d=="")
     {
       alert("Please Fill All Required Field");
@@ -230,6 +247,7 @@ function clearInputs() {
   document.getElementById("preview").innerHTML = '';
   document.getElementById("googleMap").innerHTML = '';
   document.querySelector('#googleMap').style.height = '0';
+ 
 }
 //document.querySelector("#insert").addEventListener('click',insertData)
 document.querySelector("#clearInput").addEventListener('click',clearInputs)
